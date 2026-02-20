@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AestheticsPro | All-in-One Medspa Management Software</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link id="heading-font-link" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link id="body-font-link" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.08)',
+                    },
+                    animation: {
+                        'scroll': 'scroll 25s linear infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Typography */
+            --font-heading-name: 'Plus Jakarta Sans';
+            --font-body-name: 'Inter';
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --letter-spacing-heading: -0.02em;
+            --letter-spacing-body: 0px;
+            
+            /* Spacing */
+            --space-base: 1rem;
+            
+            /* Borders */
+            --radius-small: 6px;
+            --radius-large: 16px;
+            --border-width: 1px;
+            
+            /* Shadows */
+            --shadow-color: 15 23 42;
+            --shadow-offset-x: 0px;
+            --shadow-offset-y: 4px;
+            --shadow-blur: 12px;
+            --shadow-spread: -2px;
+            --shadow-opacity: 0.08;
+            --shadow-custom: 0px 4px 12px -2px rgba(var(--shadow-color), var(--shadow-opacity));
+            --shadow-custom-hover: 0px 10px 25px -5px rgba(var(--shadow-color), 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+    </style>
+</head>
+<body class="font-body text-slate-600 bg-white antialiased selection:bg-brand-100 selection:text-brand-900" style="height: auto; min-height: 100%;">
+
+    <!-- Section 1: Hero (Above the Fold) -->
+    <section class="relative w-full overflow-hidden bg-gradient-to-br from-slate-50 via-white to-brand-50/30 pt-12 pb-16 lg:pt-24 lg:pb-32">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] rounded-full bg-brand-100/40 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] rounded-full bg-blue-100/40 blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <!-- Left Column: Content -->
+                <div class="w-full lg:w-1/2 flex flex-col gap-6 text-center lg:text-left">
+                    <div class="inline-flex items-center justify-center lg:justify-start gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 w-fit mx-auto lg:mx-0">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                        </span>
+                        <span class="text-xs font-semibold uppercase tracking-wide text-brand-700">New: AI Charting Assistant</span>
+                    </div>
+                    
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-[56px] leading-[1.1] font-bold text-navy-900 tracking-tight">
+                        Run a Profitable, Organized Medspa Without the <span class="text-brand-600">Operational Chaos.</span>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        AestheticsPro is the all-in-one platform built specifically for aesthetic practices—so you can focus on growth, not admin.
+                    </p>
+                    
+                    <div class="hidden lg:flex items-center gap-8 pt-4">
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-1 mb-1">
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-600">4.9/5 Average Rating</span>
+                        </div>
+                        <div class="w-px h-10 bg-slate-200"></div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold text-navy-900">2,400+</span>
+                            <span class="text-sm font-medium text-slate-600">Locations Served</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Lead Capture Form -->
+                <div class="w-full lg:w-1/2 max-w-md mx-auto lg:mr-0">
+                    <div class="bg-white rounded-large shadow-card p-6 sm:p-8 border border-slate-100 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-400 to-blue-500"></div>
+                        
+                        <h3 class="font-heading text-2xl font-bold text-navy-900 mb-2 text-center lg:text-left">Get Your Free Demo</h3>
+                        <p class="text-slate-500 mb-6 text-center lg:text-left text-sm">See how AestheticsPro can save you 15+ hours/week.</p>
+                        
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-slate-700 mb-1">First Name</label>
+                                    <input type="text" id="firstName" class="w-full h-12 px-4 rounded-small border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="Jane">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-slate-700 mb-1">Last Name</label>
+                                    <input type="text" id="lastName" class="w-full h-12 px-4 rounded-small border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="Doe">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Work Email</label>
+                                <input type="email" id="email" class="w-full h-12 px-4 rounded-small border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="jane@medspa.com">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full h-12 px-4 rounded-small border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="(555) 123-4567">
+                            </div>
+                            
+                            <div>
+                                <label for="practiceSize" class="block text-sm font-medium text-slate-700 mb-1">Practice Size</label>
+                                <div class="relative">
+                                    <select id="practiceSize" class="w-full h-12 px-4 rounded-small border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all appearance-none bg-white">
+                                        <option value="" disabled selected>Select providers...</option>
+                                        <option value="1">Just me</option>
+                                        <option value="2-5">2–5 providers</option>
+                                        <option value="6-10">6–10 providers</option>
+                                        <option value="11+">11+ providers</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="w-full h-14 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-small shadow-lg shadow-brand-200 transition-all transform hover:-translate-y-0.5 mt-2 text-lg">
+                                Book a Free Demo
+                            </button>
+                            
+                            <div class="flex items-center justify-center gap-2 pt-2">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-slate-400"></i>
+                                <span class="text-xs text-slate-400">HIPAA Compliant & Secure</span>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Mobile Social Proof -->
+                    <div class="lg:hidden flex flex-wrap justify-center gap-6 mt-8">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                            <span class="text-sm font-bold text-navy-900">4.9/5 Rating</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i>
+                            <span class="text-sm font-bold text-navy-900">2,400+ Locations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Social Proof Ticker Strip -->
+    <section class="w-full bg-slate-50 border-y border-slate-200 py-6 overflow-hidden">
+        <div class="relative w-full max-w-[100vw]">
+            <div class="flex animate-scroll whitespace-nowrap w-max">
+                <!-- Content Set 1 -->
+                <div class="flex items-center gap-12 px-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="map-pin" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">2,400+ Medspa Locations</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="star" class="w-5 h-5 text-brand-600 fill-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">4.9/5 Star Rating</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="shield-check" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">HIPAA Certified</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="calendar-check" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">Smart Scheduling & EMR</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="zap" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">Go Live in 7 Days</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="headphones" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">24/7 Support Available</span>
+                    </div>
+                </div>
+                <!-- Content Set 2 (Duplicate) -->
+                <div class="flex items-center gap-12 px-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="map-pin" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">2,400+ Medspa Locations</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="star" class="w-5 h-5 text-brand-600 fill-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">4.9/5 Star Rating</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="shield-check" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">HIPAA Certified</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="calendar-check" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">Smart Scheduling & EMR</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="zap" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">Go Live in 7 Days</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-full shadow-sm"><i data-lucide="headphones" class="w-5 h-5 text-brand-600"></i></div>
+                        <span class="font-medium text-slate-700">24/7 Support Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Pain Points Section -->
+    <section class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">Running a Medspa Shouldn't Feel This Hard.</h2>
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto">You didn't open a medspa to spend your days wrestling with software and scheduling chaos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Pain Point 1 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="server-off" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">Disconnected tools that don't talk to each other—double data entry, missed appointments, constant frustration.</p>
+                </div>
+
+                <!-- Pain Point 2 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="file-warning" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">Compliance anxiety around charting, documentation, and HIPAA—one audit could shut you down.</p>
+                </div>
+
+                <!-- Pain Point 3 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="user-x" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">Revenue lost to no-shows, missed rebookings, and clients who slip through the cracks.</p>
+                </div>
+
+                <!-- Pain Point 4 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="clock" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">Scheduling that consumes hours of staff time every week—phone tag, conflicts, last-minute changes.</p>
+                </div>
+
+                <!-- Pain Point 5 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="bar-chart-2" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">No visibility into business performance—you're guessing instead of making data-driven decisions.</p>
+                </div>
+
+                <!-- Pain Point 6 -->
+                <div class="flex gap-4 p-6 rounded-large bg-slate-50 border border-slate-100 hover:shadow-soft transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <i data-lucide="battery-warning" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">Owner burnout from managing everything manually—you're stuck in the business, not leading it.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-xl font-medium text-brand-700">There's a better way to run your medspa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Transformation Section with Image -->
+    <section class="py-20 lg:py-24 bg-slate-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">From Chaos to Control: The AestheticsPro Shift.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Left: Image -->
+                <div class="order-2 lg:order-1">
+                    <img src="https://uxmagic.blob.core.windows.net/components/uploads/image-1771550851762-zt10ydxics.png" alt="Medspa professional using AestheticsPro on tablet" class="w-full h-auto rounded-large shadow-card">
+                </div>
+
+                <!-- Right: Before/After Cards -->
+                <div class="order-1 lg:order-2 space-y-6">
+                    <!-- Before Card -->
+                    <div class="bg-white rounded-large shadow-sm p-6 border-l-4 border-slate-300">
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Before AestheticsPro</span>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-slate-500">
+                                <i data-lucide="x" class="w-5 h-5 text-slate-300 mt-0.5 flex-shrink-0"></i>
+                                <span>Reactive: constantly putting out fires</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-slate-500">
+                                <i data-lucide="x" class="w-5 h-5 text-slate-300 mt-0.5 flex-shrink-0"></i>
+                                <span>Manual: everything done by hand</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-slate-500">
+                                <i data-lucide="x" class="w-5 h-5 text-slate-300 mt-0.5 flex-shrink-0"></i>
+                                <span>Scattered: tools that don't integrate</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-slate-500">
+                                <i data-lucide="x" class="w-5 h-5 text-slate-300 mt-0.5 flex-shrink-0"></i>
+                                <span>Guessing: no real data or insights</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- After Card -->
+                    <div class="bg-white rounded-large shadow-custom p-6 border-l-4 border-brand-500 relative">
+                        <div class="absolute top-0 right-0 -mt-3 -mr-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">RECOMMENDED</div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-brand-600 mb-4">With AestheticsPro</span>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-navy-900 font-medium">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span>Proactive: automated reminders and workflows</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-navy-900 font-medium">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span>Automated: systems running in the background</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-navy-900 font-medium">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span>Unified: one platform, one source of truth</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-navy-900 font-medium">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span>Data-driven: real-time reporting and analytics</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-large shadow-sm text-center border border-slate-100">
+                    <div class="text-4xl font-bold text-brand-600 mb-2">37%</div>
+                    <div class="text-sm font-medium text-slate-500">No-Show Rate Reduction</div>
+                </div>
+                <div class="bg-white p-6 rounded-large shadow-sm text-center border border-slate-100">
+                    <div class="text-4xl font-bold text-brand-600 mb-2">23%</div>
+                    <div class="text-sm font-medium text-slate-500">Revenue Growth</div>
+                </div>
+                <div class="bg-white p-6 rounded-large shadow-sm text-center border border-slate-100">
+                    <div class="text-4xl font-bold text-brand-600 mb-2">15hr</div>
+                    <div class="text-sm font-medium text-slate-500">Saved Per Week</div>
+                </div>
+                <div class="bg-white p-6 rounded-large shadow-sm text-center border border-slate-100">
+                    <div class="text-4xl font-bold text-brand-600 mb-2">7 Days</div>
+                    <div class="text-sm font-medium text-slate-500">To Go Live</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Features Section with Product Screenshots -->
+    <section class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">Everything You Need to Run and Grow Your Medspa.</h2>
+                <p class="text-lg text-slate-500">One platform. Six powerful outcomes.</p>
+            </div>
+
+            <!-- Feature 1: Smart Scheduling with Screenshot -->
+            <div class="mb-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="bg-white p-2 rounded-large shadow-card border border-slate-100">
+                            <img src="https://uxmagic.blob.core.windows.net/components/uploads/image-1771550848280-psnto157gvc.png" alt="AestheticsPro Smart Scheduling Calendar Interface" class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="calendar" class="w-6 h-6 text-brand-600"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl lg:text-3xl font-bold text-navy-900 mb-4">Maximize Utilization</h3>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">Intelligent scheduling that fills your calendar, reduces gaps, and keeps providers booked—without the manual back-and-forth. See all your staff, appointments, and availability at a glance.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">Multi-provider calendar view with color-coded appointments</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">Drag-and-drop scheduling with conflict detection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">Mobile and desktop access for on-the-go management</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: HIPAA-Compliant EMR with Screenshot -->
+            <div class="mb-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-6 h-6 text-brand-600"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl lg:text-3xl font-bold text-navy-900 mb-4">Reduce Compliance Risk</h3>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">Secure, audit-ready charting and documentation built for aesthetic practices—so you're always prepared, never worried. Visual treatment records with facial mapping and comprehensive pre-treatment consultation forms.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">Visual facial mapping for treatment documentation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">Pre-treatment consultation forms with photo capture</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-100 rounded-full p-0.5 flex-shrink-0 mt-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i></div>
+                                <span class="text-slate-600">HIPAA-compliant storage with encrypted data and audit trails</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="bg-white p-2 rounded-large shadow-card border border-slate-100">
+                            <img src="https://uxmagic.blob.core.windows.net/components/uploads/image-1771550813690-ayp3ew4jg2e.png" alt="AestheticsPro EMR Treatment Record Interface" class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remaining Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-large shadow-soft border border-slate-100 hover:shadow-custom-hover transition-all group">
+                    <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-100 transition-colors">
+                        <i data-lucide="bell" class="w-6 h-6 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-navy-900 mb-3">Cut No-Shows by 37%</h3>
+                    <p class="text-slate-600 leading-relaxed">Automated appointment reminders and rebooking prompts that keep clients coming back and revenue flowing.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-large shadow-soft border border-slate-100 hover:shadow-custom-hover transition-all group">
+                    <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-100 transition-colors">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-navy-900 mb-3">Simplify Cash Flow</h3>
+                    <p class="text-slate-600 leading-relaxed">Accept payments, track deposits, and manage memberships—all in one place, with full transparency and no surprises.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-large shadow-soft border border-slate-100 hover:shadow-custom-hover transition-all group">
+                    <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-100 transition-colors">
+                        <i data-lucide="bar-chart" class="w-6 h-6 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-navy-900 mb-3">Make Data-Driven Decisions</h3>
+                    <p class="text-slate-600 leading-relaxed">Real-time dashboards showing revenue, utilization, retention, and growth—so you can lead with confidence, not guesswork.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-large shadow-soft border border-slate-100 hover:shadow-custom-hover transition-all group">
+                    <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-100 transition-colors">
+                        <i data-lucide="megaphone" class="w-6 h-6 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-navy-900 mb-3">Increase Client LTV</h3>
+                    <p class="text-slate-600 leading-relaxed">Automated campaigns, targeted promotions, and loyalty programs that turn one-time clients into lifelong customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Testimonials and Social Proof -->
+    <section class="py-20 lg:py-24 bg-slate-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">Trusted by Medspa Owners Nationwide.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-large shadow-sm border border-slate-100 relative">
+                    <i data-lucide="quote" class="w-8 h-8 text-brand-200 absolute top-6 left-6"></i>
+                    <p class="text-slate-700 italic mb-6 relative z-10 pt-6">"We cut our no-show rate by 40% in the first month. The automated reminders alone paid for the software."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Sarah M." class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-navy-900">Sarah M.</div>
+                            <div class="text-sm text-slate-500">Owner, Glow Aesthetics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-large shadow-sm border border-slate-100 relative">
+                    <i data-lucide="quote" class="w-8 h-8 text-brand-200 absolute top-6 left-6"></i>
+                    <p class="text-slate-700 italic mb-6 relative z-10 pt-6">"AestheticsPro gave us back 20 hours a week and increased our revenue by 30%. The ROI was immediate."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="David L." class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-navy-900">David L.</div>
+                            <div class="text-sm text-slate-500">Manager, Radiance Medspa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-large shadow-sm border border-slate-100 relative">
+                    <i data-lucide="quote" class="w-8 h-8 text-brand-200 absolute top-6 left-6"></i>
+                    <p class="text-slate-700 italic mb-6 relative z-10 pt-6">"We went from one location to three in 18 months. AestheticsPro scaled with us—no chaos, no growing pains."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Jessica T." class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-navy-900">Jessica T.</div>
+                            <div class="text-sm text-slate-500">Founder, Luxe Aesthetics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 border-t border-slate-200 pt-12">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-brand-600">2,400+</div>
+                    <div class="text-sm text-slate-500 mt-1">Locations Served</div>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-brand-600">4.9/5</div>
+                    <div class="text-sm text-slate-500 mt-1">Average Rating</div>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-brand-600">37%</div>
+                    <div class="text-sm text-slate-500 mt-1">Avg. No-Show Reduction</div>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-brand-600">23%</div>
+                    <div class="text-sm text-slate-500 mt-1">Avg. Revenue Increase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Objection Handling -->
+    <section class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">Common Questions from Medspa Owners.</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <details class="group bg-white rounded-large border border-slate-200 open:bg-slate-50 open:border-brand-200 transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="text-lg font-bold text-navy-900">How hard is it to switch? What about data migration?</h3>
+                        <div class="ml-4 flex-shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-slate-400 group-open:hidden"></i>
+                            <i data-lucide="minus" class="w-5 h-5 text-brand-600 hidden group-open:block"></i>
+                        </div>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed">
+                        Our onboarding team handles data migration from your current system—clients, appointments, history, everything. Most practices are fully live in 7 days with zero downtime.
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="group bg-white rounded-large border border-slate-200 open:bg-slate-50 open:border-brand-200 transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="text-lg font-bold text-navy-900">Is AestheticsPro truly HIPAA compliant?</h3>
+                        <div class="ml-4 flex-shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-slate-400 group-open:hidden"></i>
+                            <i data-lucide="minus" class="w-5 h-5 text-brand-600 hidden group-open:block"></i>
+                        </div>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed">
+                        Yes. We're fully HIPAA compliant with encrypted data storage, audit trails, and BAA agreements. We handle compliance so you don't have to worry.
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="group bg-white rounded-large border border-slate-200 open:bg-slate-50 open:border-brand-200 transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="text-lg font-bold text-navy-900">Will my staff actually use it?</h3>
+                        <div class="ml-4 flex-shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-slate-400 group-open:hidden"></i>
+                            <i data-lucide="minus" class="w-5 h-5 text-brand-600 hidden group-open:block"></i>
+                        </div>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed">
+                        AestheticsPro is designed for busy medspa teams—intuitive, fast, and mobile-friendly. We provide live training, video tutorials, and 24/7 support to ensure smooth adoption.
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="group bg-white rounded-large border border-slate-200 open:bg-slate-50 open:border-brand-200 transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="text-lg font-bold text-navy-900">How do I know this will pay for itself?</h3>
+                        <div class="ml-4 flex-shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-slate-400 group-open:hidden"></i>
+                            <i data-lucide="minus" class="w-5 h-5 text-brand-600 hidden group-open:block"></i>
+                        </div>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed">
+                        Our customers see an average 23% revenue increase and 15 hours saved per week within the first 90 days. Most practices achieve positive ROI in under 60 days.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center gap-8 mt-16 opacity-70">
+                <div class="flex flex-col items-center gap-2">
+                    <i data-lucide="heart-handshake" class="w-8 h-8 text-brand-600"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-500">White-Glove Onboarding</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-brand-600"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-500">HIPAA Certified</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <i data-lucide="zap" class="w-8 h-8 text-brand-600"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-500">7-Day Setup</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <i data-lucide="headphones" class="w-8 h-8 text-brand-600"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-500">24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Final CTA -->
+    <section class="py-20 lg:py-24 bg-navy-900 relative overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-navy-900 to-brand-900/50"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Run Your Medspa Like a Business, Not a Hobby?</h2>
+            <p class="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">Join 2,400+ medspa owners who've taken back control of their time, revenue, and growth.</p>
+            
+            <div class="max-w-lg mx-auto">
+                <form class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Enter your work email" class="flex-1 h-14 px-6 rounded-small border-0 focus:ring-2 focus:ring-brand-400 outline-none text-navy-900 placeholder-slate-400">
+                    <button type="button" class="h-14 px-8 bg-brand-500 hover:bg-brand-400 text-white font-bold rounded-small transition-colors whitespace-nowrap text-lg">
+                        Book a Demo
+                    </button>
+                </form>
+                <p class="text-sm text-slate-400 mt-4">No credit card required. No commitment. Just a 30-minute demo tailored to your practice.</p>
+            </div>
+            
+            <div class="flex justify-center gap-6 mt-10 opacity-50">
+                <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                <i data-lucide="lock" class="w-6 h-6 text-white"></i>
+                <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-slate-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold">A</div>
+                <span class="font-heading font-bold text-xl text-navy-900">AestheticsPro</span>
+            </div>
+            <div class="text-sm text-slate-500">
+                &copy; 2024 AestheticsPro Software. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-brand-600 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-brand-600 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-brand-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
